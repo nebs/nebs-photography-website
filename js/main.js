@@ -9,31 +9,48 @@ var currentGalleryName = "";
 var currentGalleryImageIndex = 0;
 var $imageContainer;
 var $portfolioElements;
+var $loader;
 
 $(document).ready(function(){
 	var galleryNames = Object.keys(galleries);
 	var $portfolio = $(".nav .portfolio");
 
+	// Add portfolio gallery list
 	var portfolioListMarkup = "<ul>";
 	for (var i=0; i<galleryNames.length; i++) {
 		portfolioListMarkup += "<li>" + galleryNames[i] + "</li>";
 	}
 	portfolioListMarkup += "</ul>";
 	$portfolio.append(portfolioListMarkup);
-
+	
+	// Find elements
 	$portfolioElements = $(".nav .portfolio li");
 	$imageContainer = $(".gallery img");
+	$loader = $(".loader");	
+	
+	$imageContainer.load(function() {
+		hideLoader();
+	});
 
+	// Setup click handlers
 	$portfolioElements.click(function() {
 		var galleryName = $(this).text();
 		gotoImage(galleryName, 0);
 	});
-
 	$("#prev-control").click(gotoPrev);
 	$("#next-control").click(gotoNext);
 
+	// Initialize with first image
 	gotoImage(galleryNames[0], 0);
 });
+
+var showLoader = function() {
+	$loader.show();
+}
+
+var hideLoader = function() {
+	$loader.hide();
+}
 
 var gotoNext = function() {
 	var galleryImages = galleries[currentGalleryName];
@@ -73,5 +90,6 @@ var gotoImage = function(galleryName, imageIndex) {
 
 	currentGalleryName = galleryName;
 	currentGalleryImageIndex = imageIndex;
+	showLoader();
 	$imageContainer.attr("src", imageSrc);
 }
