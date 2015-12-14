@@ -2,8 +2,8 @@
 // Note: Gallery names must correspond to folders directly.
 // Minify with: http://refresh-sf.com/
 var galleries = {
+	"Street": ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg"],	
 	"Portraits": ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"],
-	"Street": ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"],
 };
 
 var currentGalleryName = "";
